@@ -1,60 +1,47 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// React Element
 
-const heading = React.createElement("h1",{id:"heading"},"HelloWorld From React App.js file!");
+//React.createElement => Object => HTMLElement(render)
+/**
+ * const heading = React.createElement("h1", { id: "heading" }, "Namste React");
+ * console.log(heading);
+ */
 
-console.log(heading); //object
+
+//JSX :- it is not HTML in JS, It is HTML like syntax or XML like.
+//JSx :- (transpiled before it reached to JS)- Parcel - Babel.
+//JSX => React.CreateElement => ReactElement-JS Object => JTMLElement(render)
+const jsxHeading = <h1 id = "heading" className="head" tabIndex="5">Namste REact using JSX</h1>;
+
+console.log(jsxHeading);
+
+
+
+//React Component
+//Class Based Component - OLD
+//Functional Component - NEW
+
+//React Functional Component
+const Title = () => {
+    return <h1 id="heading">Namste React Functional Component title</h1>;
+};
+
+//Component Composition0
+const HeadingComponent = () => (
+    <div id="container">
+        <Title/>
+        <Title></Title>
+        {Title()}
+        <h1 id="heading">Namste React Functional Component</h1>
+    </div> 
+);
+
+const HeadingComponent2 = () => <h1 id="heading">Namste React Functional Component</h1>;
+
+console.log(HeadingComponent);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(heading);
-
-// Nested html in react
-
-/**
- * <div id="parent">
- *      <div id = "child1">
- *          <h1>im h1 tag<h1>
- *          <h2><h2>
- *      </div>
- *      <div id = "child2">
- *          <h1>im h1 tag<h1>
- *          <h2><h2>
- *      </div>
- * </div>
- * 
- * ReactElement(Object) => HTML(Browser Understands)
- */
-
-const parent = React.createElement(
-    "div",
-    {id:"parent"},
-    [
-        React.createElement(
-            "div",
-            {id:"child1"},
-            [
-                React.createElement("h1",{},"I'm a h1 tag"),
-                React.createElement("h2",{},"I'm a h2 tag"),
-            ]
-        ),
-        React.createElement(
-            "div",
-            {id:"child2"},
-            [
-                React.createElement("h1",{},"I'm a h1 tag"),
-                React.createElement("h2",{},"I'm a h2 tag"),
-            ]
-        )
-    ]
-);
-
-// the above clutered code is core react
-//jsx is nkw the mordern way in which we can covercoe this culterness
-
-console.log(parent);
-
-const root1 = ReactDOM.createRoot(document.getElementById("root1"));
-
-root1.render(parent);
+root.render(<HeadingComponent/>);
