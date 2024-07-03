@@ -1,0 +1,30 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This is my React app.",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rithvikgit/React.git"
+  },
+  "keywords": [
+    "react",
+    "rithvikgit"
+  ],
+  "author": "Rithvik Poojary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rithvikgit/React/issues"
+  },
+  "homepage": "https://github.com/rithvikgit/React#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
