@@ -1,13 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-
+import { Link } from "react-router-dom";
 
 const Body = () => {
 
     //Local State Variable - Super powerful variable
     const [listOfRestaurants, setListofRestaurant] = useState([]);
-    const [filteredRestraunt, setFilteredRestaurant] = useState([]);    
+    const [filteredRestraunt, setFilteredRestaurant] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
@@ -25,7 +25,7 @@ const Body = () => {
         );
         const json = await data.json();
 
-        console.log(json);
+        // console.log(json);
 
         //Optional chaning
         setListofRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -81,7 +81,12 @@ const Body = () => {
                 {/* // * looping through the <RestaurantCard /> components Using Array.map() method */}
 
                 {filteredRestraunt.map((restaurant) => (
-                    <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                    <Link
+                        to={"/restaurants/" + restaurant.info.id}
+                        key={restaurant.info.id}
+                    >
+                        <RestaurantCard resData={restaurant} />
+                    </Link>
                 ))}
 
 
