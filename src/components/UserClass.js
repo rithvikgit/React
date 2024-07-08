@@ -1,0 +1,104 @@
+import React from "react";
+
+class UserClass extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+
+        this.state = {
+            count: 0,
+            userInfo: {
+                name: 'Dummy',
+                location: 'Default',
+            },
+        };
+        // console.log(this.props.name + 'Child Constructor');
+    }
+
+    async componentDidMount() {
+        // console.log(this.props.name + 'Child Component Did Mount');
+        // * API call
+        const data = await fetch(
+            'https://api.github.com/users/Rithvikgit'
+        );
+        const json = await data.json();
+
+        this.setState({
+            userInfo: json,
+        });
+
+        console.log(json);
+    }
+
+    componentDidUpdate() {
+        console.log('Component Did Update');
+    }
+
+    componentWillUnmount() {
+        console.log('Component Will Unmount');
+    }
+
+
+
+    render() {
+        // const { name, location } = this.props;
+        // const { count } = this.state;
+
+        // console.log(this.props.name + 'Child Render');
+
+        const { name, location, avatar_url } = this.state.userInfo;
+
+
+        return (
+            <div className="user-card">
+
+                <img src={avatar_url} alt={name} />
+
+
+                {/* // * Accessing the State variable */}
+                {/* <h2>Count: {count}</h2>
+                <button
+                    onClick={() => {
+                        // * Never Update Satet Variable Directly
+                        // this.state.count = this.state.count + 1;
+
+                        // * USE setState() method instead
+                        this.setState({
+                            count: this.state.count + 1,
+                        })
+
+                    }}>
+                    Count Increase
+                </button> */}
+                <h3>Name : {name}</h3>
+                <h3>Location : {location}</h3>
+                <h4>Contact : @rithvikgit</h4>
+            </div>
+        )
+    }
+}
+
+export default UserClass;
+
+
+/* ****************************************************************
+ *
+ *
+ * ----- Mounting CYCLE -----
+ *   Constructor (dummy)
+ *   Render (dummy)
+ *       <HTML Dummy></HTML>
+ *   Component Did Mount
+ *       <API Call>
+ *       <this.setState> - State variable is updated
+ *
+ * ----- UPDATE CYCLE -----
+ *       render(API data)
+ *       <HTML (new API data)>
+ *   Component Did Update
+ *   Component Will Unmount
+ *
+ *
+ * Life Cycle Diagram Website Reference: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+ */

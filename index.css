@@ -50,7 +50,7 @@
 }
 
 .footer{
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -81,4 +81,15 @@
 
 .filter{
     display: flex;
+}
+
+.menu{
+    height: 100%;
+    min-height:72vh;
+}
+
+.user-card{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;    
 }
