@@ -35,8 +35,8 @@ const Body = () => {
 
     const onlineStatus = useOnlineStatus();
 
-    if(onlineStatus === false){
-        return(
+    if (onlineStatus === false) {
+        return (
             <h1>
                 Looks like you're offline!! Please check your internet connection.
             </h1>
@@ -48,46 +48,51 @@ const Body = () => {
         <Shimmer />
     ) : (
         <div className="body">
-            <div className="filter">
-                <div className="search">
+            <div className="filter flex">
+                <div className="search m-4 p-4">
 
-                    <input type="text" className="search-box"
+                    <input type="text" className="border border-solid border-black"
                         value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value);
                         }}>
                     </input>
 
-                    <button onClick={() => {
-                        //Filter the restraunt cards and update the ui
-                        //Search text
-                        console.log(searchText);
+                    <button className="px-4 py-1 bg-green-100 m-4 rounded-lg"
+                        onClick={() => {
+                            //Filter the restraunt cards and update the ui
+                            //Search text
+                            console.log(searchText);
 
-                        const filteredRestraunt = listOfRestaurants.filter((res) =>
-                            res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                        );
+                            const filteredRestraunt = listOfRestaurants.filter((res) =>
+                                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                            );
 
-                        setFilteredRestaurant(filteredRestraunt);
+                            setFilteredRestaurant(filteredRestraunt);
 
-                    }}
+                        }}
                     >Search</button>
 
                 </div>
 
-                <button className="filter-btn"
-                    onClick={() => {
+                <div className="m-4 p-4 flex items-center">
+                    <button className="px-4 py-1 bg-gray-50 rounded-lg"
+                        onClick={() => {
 
-                        const filteredList = listOfRestaurants.filter(
-                            (res) => res.info.avgRating > 4
-                        );
-                        setListofRestaurant(filteredList);
+                            const filteredList = listOfRestaurants.filter(
+                                (res) => res.info.avgRating > 4
+                            );
+                            setFilteredRestaurant(filteredList);
 
-                    }}
-                >Top Rated Restaurant</button>
+                        }}
+                    >Top Rated Restaurant</button>
+                </div>
+
+
 
             </div>
 
-            <div className="res-container">
+            <div className="flex flex-wrap">
 
                 {/* // * looping through the <RestaurantCard /> components Using Array.map() method */}
 

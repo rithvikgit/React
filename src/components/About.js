@@ -14,7 +14,7 @@ class About extends Component {
 
     render() {
         return (
-            <div className="about-page">
+            <div className="m-5">
                 {/* <h1>About Class Component</h1>
                 <h2>This is About Page</h2> */}
                 <UserClass name={'First'} location={'Badvel class'} />

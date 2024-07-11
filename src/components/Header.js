@@ -1,7 +1,7 @@
-import { LOGO_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+let Logo = require('../utils/curry.png')
 
 const Header = () => {
 
@@ -17,33 +17,36 @@ const Header = () => {
     }, [btnNameReact]);
 
     return (
-        <div className="header">
+        <div className="flex justify-between bg-orange-100 shadow-sm">
             <div className="logo-container">
-                <img className="logo" src={LOGO_URL} />
+                <img className="w-20 m-5" src={Logo} />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4 ">
+                    <li className="px-4 py-1">
                         Online Staus: {onlineStatus ? '🟢' : "🔴"}
                     </li>
-                    <li>
+                    <li className="px-4 py-1">
                         <Link to="/">Home</Link>
                     </li>
-                    <li>
+                    <li className="px-4 py-1">
                         <Link to="/about">About us</Link>
                     </li>
-                    <li>
+                    <li className="px-4 py-1">
                         <Link to="/contact">Contact Us</Link>
                     </li>
-                    <li>
+                    <li className="px-4 py-1">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li>Cart</li>
-                    <button className="login"
-                        onClick={() => {
-                            btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login");
-                        }}
-                    >{btnNameReact}</button>
+                    <li className="px-4 py-1">Cart</li>
+                    <l1 className="px-4">
+                        <button className="px-4 py-1 rounded-lg bg-green-100"
+                            onClick={() => {
+                                btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login");
+                            }}
+                        >{btnNameReact}</button>
+                    </l1>
+
                 </ul>
 
             </div>
