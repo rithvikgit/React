@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromtedLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ const Body = () => {
     const [filteredRestraunt, setFilteredRestaurant] = useState([]);
 
     const [searchText, setSearchText] = useState("");
+
+    const ResataurantCardPromoted = withPromtedLabel(RestaurantCard);
 
     //Whenever State Variable updates, reac triggers reconciliation cycle(re-renders the component).
     // console.log("Body Rendered");
@@ -101,7 +103,13 @@ const Body = () => {
                         to={"/restaurants/" + restaurant.info.id}
                         key={restaurant.info.id}
                     >
-                        <RestaurantCard resData={restaurant} />
+
+                        {restaurant.info.promoted ? (
+                            <ResataurantCardPromoted resData={restaurant} />
+                        ) : (
+                            <RestaurantCard resData={restaurant} />
+                        )}
+
                     </Link>
                 ))}
 

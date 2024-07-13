@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 let Logo = require('../utils/curry.png')
 
 const Header = () => {
@@ -9,11 +10,13 @@ const Header = () => {
 
     const onlineStatus = useOnlineStatus();
 
+    const {loggedInUser} = useContext(UserContext);
+
     //if no dependency array => useEffect is called the on every render
     //if dependency array is empfty = [] => useEffect is called on initial render(just once)
     //if dependency array is [btnNameReact] => called everytime btnReactName is updated
     useEffect(() => {
-        console.log("use Effect Called");
+        // console.log("use Effect Called");
     }, [btnNameReact]);
 
     return (
@@ -38,14 +41,15 @@ const Header = () => {
                     <li className="px-4 py-1">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li className="px-4 py-1">Cart</li>
-                    <l1 className="px-4">
+                    <li className="px-4 py-1 ">Cart</li>
+                    <li className="px-4 py-1 font-semibold">{loggedInUser}</li>
+                    <li className="px-4">
                         <button className="px-4 py-1 rounded-lg bg-green-100"
                             onClick={() => {
                                 btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login");
                             }}
                         >{btnNameReact}</button>
-                    </l1>
+                    </li>
 
                 </ul>
 
