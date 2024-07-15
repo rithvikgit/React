@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 let Logo = require('../utils/curry.png')
 
 const Header = () => {
@@ -18,6 +19,11 @@ const Header = () => {
     useEffect(() => {
         // console.log("use Effect Called");
     }, [btnNameReact]);
+
+    //selector is hook inside react-redux libary
+    //subscribing to our store using selector
+    const cartItems = useSelector((store) => store.cart.items);
+    // console.log(cartItems);
 
     return (
         <div className="flex justify-between bg-orange-100 shadow-sm">
@@ -41,7 +47,7 @@ const Header = () => {
                     <li className="px-4 py-1">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li className="px-4 py-1 ">Cart</li>
+                    <li className="px-4 py-1 "><Link to='/cart'>Cart- ({cartItems.length} items)</Link></li>
                     <li className="px-4 py-1 font-semibold">{loggedInUser}</li>
                     <li className="px-4">
                         <button className="px-4 py-1 rounded-lg bg-green-100"
