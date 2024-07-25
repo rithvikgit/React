@@ -1,4 +1,4 @@
-# React
+ # React
 /**
  * Props :
 
@@ -91,3 +91,20 @@
 - Create a Cart Slice
 - dispatch(action)
 - Selector
+
+# Types of Testing (Developers)
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+# Setting up Testing in our app
+- Insatll React Testing Library
+- Installed Jest
+- Install Babel dependencies
+- Configure Babel
+- Configuire Parcel Config file to disable default babel transpliation
+- Jest configuration:- npx jest --init
+- Install jsdom lib
+- Install @babel/preset-react -to mke JSX work in test cases
+- Include @babel/preset-react inside my babel config
+- Install :- npm i -D @testing-library/jest-dom

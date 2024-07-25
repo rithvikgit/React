@@ -1,0 +1,51 @@
+import Contact from "../Contact";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+
+describe('Contact Us Page Test Case', () => {
+
+    test("Should test contact us component", () => {
+
+        render(<Contact />)
+    
+        const heading = screen.getByRole("heading");
+    
+        //Assertion
+        expect(heading).toBeInTheDocument();
+    })
+    
+    test("Should load button inside contact us component", () => {
+    
+        render(<Contact />)
+    
+        const button = screen.getByText("Submit");
+    
+        //Assertion
+        expect(button).toBeInTheDocument();
+    })
+
+    // * Note: test() or it() both are same
+
+  it('Should input name inside Contact component', () => {
+    render(<Contact />);
+
+    const inputName = screen.getByPlaceholderText('name');
+
+    // * Assertion
+    expect(inputName).toBeInTheDocument();
+  });
+
+  it('Should load 2 input boxes on the Contact component', () => {
+    render(<Contact />);
+
+    // * Querying
+    const inputBoxes = screen.getAllByRole('textbox'); // getAllByRole - returns multiple elements
+
+    // console.log(inputBoxes.length); // returns jsx element
+
+    // * Assertion
+    // expect(inputBoxes.length).toBe(2);
+    expect(inputBoxes.length).not.toBe(3); // not here means inverse
+  });
+
+});
